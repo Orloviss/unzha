@@ -16,7 +16,7 @@
     <div class="side-panel">
         <label class="side-button-2" for="side-checkbox">+</label>
         <img class="line" src="./img/line.png" />
-        <p>Позвонasdasdить нам:</p>
+        <p>Позвонить нам:</p>
         <div class="phone"><img src="./img/phone.png"><a href="tel:8(800)-200-49-49">8(800)-200-49-49</a></div>
     </div>
     <div class="side-button-1-wr">
@@ -81,9 +81,7 @@
         <p>Email</p>
         <input placeholder="Укажите почту" name="email" type="text" >
         <p>Сообщение</p>
-        <textarea name="text"></textarea>
-        <p>Прикрепить файлы</p>
-        <input type="file" name="myfile[]" multiple id="myfile">
+      
         <p><input value="Отправить" type="submit"></p>
    </form>
     <footer>
@@ -113,7 +111,6 @@
     <script type="text/javascript" src="./js/slick-lightbox.min.js"></script>
     <script src="./js/mains.js"></script>
     <script>
-        // Отправка данных на сервер
         function send(event, php){
         console.log("Отправка запроса");
         event.preventDefault ? event.preventDefault() : event.returnValue = false;
@@ -121,7 +118,7 @@
         req.open('POST', php, true);
         req.onload = function() {
             if (req.status >= 200 && req.status < 400) {
-            json = JSON.parse(this.response); // Ебанный internet explorer 11
+                json = JSON.parse(this.response); // Ебанный internet explorer 11
                 console.log(json);
                 
                 // ЗДЕСЬ УКАЗЫВАЕМ ДЕЙСТВИЯ В СЛУЧАЕ УСПЕХА ИЛИ НЕУДАЧИ

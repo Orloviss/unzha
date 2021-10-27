@@ -1,10 +1,8 @@
-
-
 <?php
 // Файлы phpmailer
-require './phpmailer/PHPMailer.php';
-require './phpmailer/SMTP.php';
-require './phpmailer/Exception.php';
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+require 'phpmailer/Exception.php';
 
 // Переменные, которые отправляет пользователь
 $name = $_POST['name'];
@@ -13,9 +11,9 @@ $text = $_POST['text'];
 $file = $_FILES['myfile'];
 
 // Формирование самого письма
-$title = "Заявка на воду";
+$title = "Заголовок письма";
 $body = "
-<h2>Новая заявка</h2>
+<h2>Новое письмо</h2>
 <b>Имя:</b> $name<br>
 <b>Почта:</b> $email<br><br>
 <b>Сообщение:</b><br>$text
@@ -27,20 +25,20 @@ try {
     $mail->isSMTP();   
     $mail->CharSet = "UTF-8";
     $mail->SMTPAuth   = true;
-    $mail->SMTPDebug = 2;
+    //$mail->SMTPDebug = 2;
     $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
 
     // Настройки вашей почты
     $mail->Host       = 'smtp.yandex.ru'; // SMTP сервера вашей почты
-    $mail->Username   = 'activityorlov@yandex.ru'; // Логин на почте
-    $mail->Password   = 'keiajibobdtutgal'; // Пароль на почте
+    $mail->Username   = 'activityorlov'; // Логин на почте
+    $mail->Password   = 'lyxpawcqhnsfcsdu'; // Пароль на почте
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
-    $mail->setFrom('activityorlov@yandex.ru', 'Заявка из приложения'); // Адрес самой почты и имя отправителя
+    $mail->setFrom('activityorlov@yandex.ru', 'Имя отправителя'); // Адрес самой почты и имя отправителя
 
     // Получатель письма
     $mail->addAddress('activityorlov@yandex.ru');  
-  
+    
 
     // Прикрипление файлов к письму
 if (!empty($file['name'][0])) {
@@ -71,4 +69,3 @@ else {$result = "error";}
 
 // Отображение результата
 echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status]);
-view rawsend.php hosted with ❤ by GitHub
